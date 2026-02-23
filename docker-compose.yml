@@ -12,7 +12,7 @@ services:
       - mongo-data:/data/db
 
   backend:
-    build: ./backend
+    image: sharjil07/crud-dd-backend:latest
     container_name: backend
     restart: always
     ports:
@@ -23,7 +23,7 @@ services:
       - DB_HOST=mongodb
 
   frontend:
-    build: ./frontend
+    image: sharjil07/crud-dd-frontend:latest
     container_name: frontend
     restart: always
     ports:
