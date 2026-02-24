@@ -1,264 +1,54 @@
-Full Stack MEAN Application – Containerized & Deployed with CI/CD
-📌 Project Overview
+# Discover Dollar DevOps Assignment - MEAN CRUD App
 
-This project demonstrates:
+## 📌 Project Overview
+Successfully containerized and deployed a full-stack MEAN (MongoDB, Express, Angular 15, Node.js) application with a fully automated CI/CD pipeline.
 
-Containerization of a MEAN Stack application
+## 🛠️ Tech Stack & Tools
+- **Frontend:** Angular 15
+- **Backend:** Node.js / Express
+- **Database:** MongoDB 6 (Dockerized)
+- **Proxy:** Nginx (Reverse Proxy)
+- **CI/CD:** GitHub Actions
+- **Cloud:** AWS EC2 (Ubuntu)
 
-Multi-container orchestration using Docker Compose
+## 🐳 Containerization Details
+- **Frontend Dockerfile:** Uses a multi-stage build. Stage 1 builds the Angular app, and Stage 2 serves it via Nginx.
+- **Backend Dockerfile:** Uses Node 18 to serve the REST API on port 8080.
+- **Nginx Config:** Configured to serve the frontend on `/` and proxy API requests to the backend on `/api/`.
 
-CI/CD pipeline using GitHub Actions
+## 🔄 CI/CD Pipeline
+The GitHub Action (`deploy.yml`) performs the following on every push to `main`:
+1. Logs into Docker Hub.
+2. Builds and Pushes `sharjil07/crud-dd-frontend` and `sharjil07/crud-dd-backend`.
+3. SSH into AWS EC2.
+4. Pulls the latest images and restarts containers using `docker-compose up -d`.
 
-Automated Docker image build & push to Docker Hub
+## 🚀 How to Run Locally
+1. Clone the repo.
+2. Run `docker-compose up --build`.
+3. Access the app at `http://localhost`.
 
-Auto-deployment on AWS EC2
+## 📊 Deployment Screenshots
 
-Nginx Reverse Proxy setup on Port 80
+### 1. GitHub Repository Structure
+!<img width="1223" height="665" alt="image" src="https://github.com/user-attachments/assets/542886eb-0176-455b-ab1b-39d7577912c4" />
 
-Flow:
-Developer → GitHub → GitHub Actions → Docker Hub → EC2 VM → Docker Compose → Nginx → Port 80
 
-📂 Repository Structure
-project-root/
-│
-├── frontend/
-│   └── Dockerfile
-│
-├── backend/
-│   └── Dockerfile
-│
-├── docker-compose.yml
-│
-├── nginx/
-│   └── default.conf
-│
-├── .github/workflows/
-│   └── main.yml
-│
-└── README.md
-1️⃣ Repository Setup
+### 2. Docker Hub Repositories
+!<img width="1866" height="523" alt="image" src="https://github.com/user-attachments/assets/815ddf9a-ac31-4961-ba60-096fc8dbd492" />
 
-Created a new GitHub repository
 
-Pushed full project source code
+### 3. AWS EC2 Instance & Security Groups
+!<img width="1896" height="816" alt="image" src="https://github.com/user-attachments/assets/6716cc98-6ed7-4674-8426-c6bb58d458a5" />
 
-Structured frontend and backend separately
 
-<img width="1223" height="665" alt="image" src="https://github.com/user-attachments/assets/ca7b7805-1a0f-4ea5-9e5b-5eae2f86d649" />
-<img width="1223" height="665" alt="image" src="https://github.com/user-attachments/assets/ca7b7805-1a0f-4ea5-9e5b-5eae2f86d649" />
+### 4. Running Containers (docker ps)
+<img width="1390" height="196" alt="image" src="https://github.com/user-attachments/assets/538ebef1-667f-48a0-8274-3f1e04a32914" />
 
-GitHub repository main page showing folders
 
-2️⃣ Dockerization
-Backend Dockerfile
+### 5. Application UI (Live)
+<img width="1457" height="815" alt="Screenshot 2026-02-24 022305" src="https://github.com/user-attachments/assets/508243ef-4fde-443b-97f7-e5b6df8de056" />
 
-Used Node base image
 
-Installed dependencies
-
-Exposed backend port
-
-Configured start command
-
-<img width="571" height="350" alt="image" src="https://github.com/user-attachments/assets/5e805a56-f6ed-4ad1-803b-c1562ad00956" />
-<img width="571" height="350" alt="image" src="https://github.com/user-attachments/assets/5e805a56-f6ed-4ad1-803b-c1562ad00956" />
-backend/Dockerfile
-
-Frontend Dockerfile
-
-Built Angular production build
-
-Served via container
-
-Exposed frontend port
-
-<img width="906" height="439" alt="image" src="https://github.com/user-attachments/assets/1f0542b9-6685-4da9-a830-e8fcde9fb85c" />
-<img width="906" height="439" alt="image" src="https://github.com/user-attachments/assets/1f0542b9-6685-4da9-a830-e8fcde9fb85c" />
-
-
-frontend/Dockerfile
-
-3️⃣ Docker Compose Setup
-
-Used official MongoDB Docker image inside docker-compose.yml.
-
-Services:
-
-MongoDB
-
-Backend
-
-Frontend
-
-Nginx reverse proxy
-
-To run:
-
-docker-compose up -d
-
-📸 Add Screenshots:
-
-docker-compose.yml file
-
-docker ps output
-
-Running containers list
-
-4️⃣ Docker Hub Integration
-
-Images built and pushed to Docker Hub.
-
-Backend image
-
-Frontend image
-
-Images updated automatically via CI/CD pipeline.
-
-📸 Add Screenshots:
-
-Docker Hub repository page
-
-Image tags showing latest build
-
-5️⃣ CI/CD Pipeline – GitHub Actions
-
-Implemented automated CI/CD using GitHub Actions.
-
-Pipeline performs:
-
-Checkout repository
-
-Docker login using secrets
-
-Build frontend image
-
-Build backend image
-
-Push images to Docker Hub
-
-SSH into EC2
-
-Pull latest images
-
-Restart containers
-
-Workflow file location:
-
-.github/workflows/main.yml
-
-📸 Add Screenshots:
-
-GitHub Actions workflow YAML
-
-Successful pipeline run (Green status)
-
-Logs showing docker build & push
-
-Logs showing SSH deployment step
-
-6️⃣ AWS EC2 Deployment
-
-Cloud Platform: AWS EC2 (Ubuntu 22.04)
-
-Steps performed:
-
-Launched Ubuntu EC2 instance
-
-Installed Docker & Docker Compose
-
-Cloned repository
-
-Ran docker-compose up -d
-
-Configured security group for port 80
-
-<img width="1390" height="196" alt="docker ps " src="https://github.com/user-attachments/assets/58682393-eb14-4edd-8248-e3c5c2a420a4" />
-<img width="1390" height="196" alt="docker ps " src="https://github.com/user-attachments/assets/58682393-eb14-4edd-8248-e3c5c2a420a4" />
-
-
-EC2 instance dashboard
-
-SSH terminal showing docker-compose up
-
-Running application in browser using Public IP
-<img width="1896" height="816" alt="ec2 instance is running" src="https://github.com/user-attachments/assets/cf31a6c0-9947-479f-9356-4baa861ec1ea" />
-<img width="1896" height="816" alt="ec2 instance is running" src="https://github.com/user-attachments/assets/cf31a6c0-9947-479f-9356-4baa861ec1ea" />
-
-
-7️⃣ MongoDB Setup
-
-Used Official MongoDB Docker Image inside docker-compose.yml.
-
-Benefits:
-
-No manual DB installation
-
-Easy scalability
-
-Isolated container environment
-
-MongoDB service section in docker-compose.yml
-
-8️⃣ Nginx Reverse Proxy Setup
-
-Configured Nginx to:
-
-Listen on port 80
-
-Forward traffic to frontend container
-
-Act as reverse proxy
-
-Application accessible via:
-
-http://<EC2_PUBLIC_IP>
-
-
-nginx configuration file
-
-Browser showing working application on port 80
-
-sudo systemctl status nginx OR container status
-
-🔐 GitHub Secrets Used
-
-DOCKER_USERNAME
-
-DOCKER_PASSWORD
-
-
-All secrets stored securely inside GitHub repository settings.
-
-GitHub Secrets configuration page (blur sensitive data)
-
-🔄 CI/CD Flow Verification
-
-To verify automation:
-
-Modified code
-
-Pushed to GitHub
-
-Pipeline triggered automatically
-
-Images rebuilt & pushed
-
-EC2 pulled latest images
-
-Containers restarted automatically
-
-Commit push
-
-Actions running
-
-Application updated live
-
-🌐 Live Application
-
-Accessible via:
-
-http://<EC2_PUBLIC_IP>
-
-Working CRUD UI
-
-Create / Read / Update / Delete operation
+---
+**Deployment Link:** http://[YOUR-EC2-PUBLIC-IP]
